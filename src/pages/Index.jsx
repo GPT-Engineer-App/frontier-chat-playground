@@ -54,24 +54,6 @@ const Index = () => {
                     </div>
                 </div>
             </footer>
-
-            <script>
-                // JavaScript for handling chat and comparison functionalities
-                document.getElementById('send-button').addEventListener('click', function() {
-                    const input = document.getElementById('chat-input');
-                    const message = input.value.trim();
-                    if (message) {
-                        const chatMessages = document.getElementById('chat-messages');
-                        const timestamp = new Date().toLocaleTimeString();
-                        const newMessage = document.createElement('div');
-                        newMessage.classList.add('mb-2');
-                        newMessage.innerHTML = `<strong>LLM:</strong> ${message} <span className="text-gray-400 text-sm">${timestamp}</span>`;
-                        chatMessages.appendChild(newMessage);
-                        input.value = '';
-                        chatMessages.scrollTop = chatMessages.scrollHeight;
-                    }
-                });
-            </script>
         </div>
     );
 };
