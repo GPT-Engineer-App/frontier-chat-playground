@@ -2,6 +2,27 @@ import React from 'react';
 import 'tailwindcss/tailwind.css';
 
 const Index = () => {
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    };
+
+    const sendMessage = () => {
+        const input = document.getElementById('chat-input');
+        const message = input.value.trim();
+        if (message) {
+            const chatMessages = document.getElementById('chat-messages');
+            const timestamp = new Date().toLocaleTimeString();
+            const newMessage = document.createElement('div');
+            newMessage.classList.add('mb-2');
+            newMessage.innerHTML = `<strong>LLM:</strong> ${message} <span class="text-gray-400 text-sm">${timestamp}</span>`;
+            chatMessages.appendChild(newMessage);
+            input.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    };
+
     return (
         <div className="bg-gray-900 text-white min-h-screen flex flex-col">
             {/* Navigation Bar */}
@@ -32,7 +53,7 @@ const Index = () => {
                     </div>
                     <div className="mt-4 flex">
                         <input type="text" id="chat-input" className="flex-grow p-2 bg-gray-600 rounded-l-lg" placeholder="Type a message..." onKeyDown={handleKeyDown} />
-                        <button id="send-button" className="p-2 bg-blue-600 rounded-r-lg">Send</button>
+                        <button id="send-button" className="p-2 bg-blue-600 rounded-r-lg" onClick={sendMessage}>Send</button>
                     </div>
                 </section>
 
